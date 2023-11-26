@@ -60,6 +60,18 @@
   transition: 0.3s;
 }
 
+.disabled {
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: calc(1rem);
+  border-radius: 0.6rem;
+  margin: 1rem;
+  cursor: not-allowed;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -71,16 +83,61 @@
 .form-header {
   font-size: calc(1.5rem);
   margin: 1rem;
+  text-shadow: 0 0 10px lightcoral;
 }
 
 .imagem {
-  border: double 0.3em transparent;
-  border-radius: 10px;
-  box-shadow: 0 0 10px lightcoral;
+  /* border: double 0.3em transparent;
+  border-radius: 10px; */
+  /* background-origin: border-box;
+  background-clip: content-box, border-box; */
   margin: calc(1rem);
   max-height: 50vh;
 }
 
-.file-selector {
-  margin-bottom: 0.5rem;
+@keyframes rainbow {
+  from {
+    background-position: -100vh 0;
+  }
+
+  to {
+    background-position: 100vh 0;
+  }
+}
+
+.rainbow {
+  border: double 0.3em transparent;
+  border-radius: 10px;
+  background: linear-gradient(white, white),
+    repeating-linear-gradient(to right, rgb(82, 82, 209), rgb(235, 50, 235), rgb(82, 82, 209));
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation-name: rainbow;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+input[type=file]::file-selector-button {
+  border: none;
+  background-color: lightcoral;
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: calc(1rem);
+  cursor: pointer;
+  border-radius: 0.6rem;
+  transition: 0.3s;
+  margin: 1rem;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: lightsalmon;
+  scale: 1.1;
+  transition: 0.3s;
+}
+
+input[type=file] {
+  width: 50%;
+  text-shadow: 0 0 10px lightcoral;
 }

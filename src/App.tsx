@@ -11,14 +11,21 @@ function App() {
     window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
   };
 
-  function handleEnviarImagem() {
-    console.log(imagem);
-  };
-
   const onImageChange = (event: any) => {
     if (event.target.files && event.target.files[0]) {
-      setImagem(URL.createObjectURL(event.target.files[0]));
+      const file = URL.createObjectURL(event.target.files[0]);
+      //verificar se é imagem
+      if (event.target.files[0].type.split('/')[0] !== 'image') {
+        alert('O arquivo selecionado não é uma imagem!');
+        setImagem(null);
+        return;
+      }
+      setImagem(file);
     }
+  };
+
+  function handleSendImage() {
+    console.log(imagem);
   };
 
   return (
@@ -37,9 +44,13 @@ function App() {
             className='file-selector' placeholder='selecione uma imagem'
           />
 
-          {imagem && <img src={imagem} alt="arquivo de imagem" className='imagem' />}
+          {imagem &&
+            <div className='rainbow-container'>
+              <img src={imagem} alt="arquivo de imagem" className='imagem rainbow' />
+            </div>
+          }
 
-          <button onClick={handleEnviarImagem} className='button'>Enviar Imagem</button>
+          <button onClick={handleSendImage} className={!imagem ? 'disabled' : 'button'} disabled={!imagem}>Enviar Imagem</button>
         </section>
       </main>
     </div>
